@@ -1,0 +1,198 @@
+<html>
+    <head>
+        <title>XML Project</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body><div class="data">
+        <hr >
+        <h2><b>Appendix G. Automatic File Download at Console Log On</b></h2>
+        <p>This appendix describes how files are downloaded from the server to the console when the console signs on to the server.</p>
+        <p>The installation of the NetView management console topology console occurs in the following two phases:</p>
+        <ol>
+            <li>During the installation process</li>
+            <li>The first time the console logs on to the server</li>
+        </ol>
+        <h2>During Installation</h2>
+        <p>During the installation process, the smallest possible set of files is installed on the local workstation. This includes the following types of files:</p>
+        <p>v NetView management console topology console code</p>
+        <p>v MRI (readable strings) for the appropriate language</p>
+        <p>v A subset of background, help, and icon files</p>
+        <p><b>Note: 
+</b>The exception to the rule of installing the smallest possible set of files on the workstation during installation occurs when a custom install is performed and the Productivity Kit is selected. This installs all files necessary to run the NetView management console topology console in demonstration mode (not requiring a NetView management console topology server).</p>
+        <h2>During Initial Sign On</h2>
+        <p>The first time the console signs on to the server following installation, files are automatically downloaded from the following server directories:</p>
+        <p>v   For Windows systems: %BINDIR%/TDS/server/db/current/</p>
+        <p>v For AIX or Linux systems: </p>
+        <p>$BINDIR$\TDS\server\db\current These directories and their </p>
+        <p>descriptions follow:</p>
+        <p><b>backgrounds</b></p>
+        <p>View background maps/images</p>
+        <p><b>bin</b>NetView management console topology console binary support files including scripts</p>
+        <p><b>icons	</b>Resource and company icons</p>
+        <p><b>help</b>Online help support files including:</p>
+        <p>v NetView management console product specific help files</p>
+        <p>v    Customer Java application help files</p>
+        <p><b>lib</b>Java code including the following files:</p>
+        <p>v    NetView management console topology console Java code (ihseuc.jar) v   NetView management console product personality file (nmc.properties) v Customer Java application and plug-in JAR files</p>
+        <h2>During Subsequent Sign On</h2>
+        <p>The files downloaded during the initial sign on are automatically checked for updates each time the console successfully signs onto the server. That is, when the console downloads a file, the console stores the time stamp of the file on the server workstation. If the time stamp has changed, the file is downloaded again.</p>
+        <p>If the console connects to the same server, these files are updated only when changes have been made. However, if the console connects to different servers on different platforms, the time stamps across servers is close, but not identical.</p>
+        <p>Therefore, a value in the defaultscheme.properties file can be set so that you can control exactly when the download occurs. This control applies when reconnecting to the same server or to different servers. See “Customizing the Automatic Download of Files At Log On” on page 29 for more detailed information.</p>
+        <p>The lib directory is handled differently than the others. Files installed by the Console, and named in the contents.properites file in the lib directory, are only downloaded if a different build of the Console is placed in this directory. That is, the time stamps of these files are not cross-checked. The time stamp cross-check does occur for files in the lib directory which were provided by the customer.</p>
+        <p>However, the defaultscheme.properties file has not yet been read in; therefore control over when these files are downloaded cannot be customized. See the defaultscheme.properties file for more information and for the internal value that the Console uses for the time stamp cross-check.</p>
+        <p>When a file in the lib directory needs to be downloaded, message IHS1137 is displayed and the file must be downloaded before sign on can continue. These files might need to be reloaded into memory. For files in all other directories, the file is downloaded and sign on processing continues automatically.</p>
+        <p>
+See Appendix B, “Topology Console Commands,” on page 123 for more information about command-line arguments to suppress this downloading process.
+</p>
+        <h2>Appendix H. MultiSystem Manager Resource Information Window–Other Data Field for the Open Topology Interface Agent</h2>
+        <p>This appendix lists the MultiSystem Manager resource types for the MultiSystem Manager Open Topology Interface and the contents of the Other data field for each resource type.</p>
+        <p>The following table contains the contents of the Other data field in the NetView management console Resource Information window for each of the MultiSystem Manager resource types. This data is stored in the DisplayResourceOtherData field in the Resource Object Data Manager (RODM) for each object.</p>
+        <p>If more than one field is listed, the fields are listed in the order in which they are displayed.</p>
+        <p><i>Table 70. Open Topology Interface Other Data Fields on Resource Information Windows</i></p>
+        <table border="1">
+  <tr>
+     
+    <th>Resource Type</th>
+    <th>Other Data Field Contents</th>
+  </tr>
+  <tr>
+    
+      <td>Group</td>
+       <td>None</td>
+  </tr>
+  <tr>
+      <td>Network aggregate</td>
+      <td><p>Agent</p> <p>Application=</p> <p>Agent </p><p>Level=</p></td>
+    </tr>
+            <tr>
+                <td>Manager</td>
+                 <td><p>SNA</p>
+<p>Address= </p>
+<p>Agent </p>
+<p>Application= </p>
+                <p>Agent </p>
+                <p>Level=</p>
+                </td>
+            </tr>
+            <tr>
+                <td>IP system aggregate</td>
+                 <td>
+<p>IP Address=² ³</p>
+<p>OS=</p>
+<p>OS Ver=</p>
+<p>OS Release=</p></td>
+            </tr>
+            <tr>
+                <td>LAN workstation aggregate</td>
+                 <td><p>MAC Address=¹ ³</p>
+<p>OS=</p>
+<p>OS Ver=</p>
+<p>OS Release=</p></td>
+            </tr>
+            <tr>
+                <td>Open system aggregate</td>
+                 <td>
+<p>MAC Address=¹ ² ³</p>
+<p>IP Address= </p>
+    <p>OS=</p>
+<p>OS Ver=</p>
+<p>OS Release=</p></td>
+            </tr>
+
+            </table>
+        <p><i>Table 70. Open Topology Interface Other Data Fields on Resource Information Windows (continued)</i></p>
+        
+        <table border="1">
+    <tr>
+      <th>Resource Type</th>
+      <th>Other Data Field Contents</th>
+    </tr>
+
+    <tr>
+      <td COLSPAN="2">
+        <p><b>Notes:</b></p>
+        <ol>
+          <li>
+            <p>When the topology correlation function is used, a typical value example is shown in the following way:</p>
+            <p>MAC address=4000A17D006,OS=Windows Server 2008, OS Ver=6.0 build 6002 Service Pack 2</p>
+          </li>
+          <li>
+            <p>When the topology correlation function is used, a typical example value is shown in the following way:</p>
+            <p>IPAddress=9.37.36.7,OS=Windows Server 2008, OS Ver=6.0 build 6002 Service Pack 2</p>
+          </li>
+          <li>
+            <p>3.When the topology correlation function is used, the maximum example value is shown in the following way:</p>
+            <p>MAC address=40000A17D006,IP address=9.37.36.7,OS=Windows </p>
+            <p>Server 2008, OS Ver=6.0 build 6002 Service Pack 2,Segment </p>
+            <p>No.=SEG100B,</p>
+            <p>IPX address=00004444.40000A17D006,SNA Node=PU4657FA,</p>
+            <p>IP HostName=GSMEYERS,Location=E214/503</p>
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </table>
+
+        <h2>Notices</h2>
+        <p>This information was developed for products and services offered in the U.S.A.</p>
+        <p>IBM may not offer the products, services, or features discussed in this document in other countries. Consult your local IBM representative for information on the products and services currently available in your area. Any reference to an IBM product, program, or service is not intended to state or imply that only that IBM product, program, or service may be used. Any functionally equivalent product, program, or service that does not infringe any IBM intellectual property right may be used instead. However, it is the user's responsibility to evaluate and verify the operation of any non-IBM product, program, or service.</p>
+        <p>IBM may have patents or pending patent applications covering subject matter described in this document. The furnishing of this document does not give you any license to these patents. You can send license inquiries, in writing, to:
+</p>
+        <p>IBM Director of </p>
+        <p>Licensing IBM </p>
+        <p>Corporation</p>
+        <p>North Castle Drive </p>
+        <p>Armonk, NY 10504-</p>
+        <p>1785 U.S.A.</p>
+        <p>For license inquiries regarding double-byte (DBCS) information, contact the IBM Intellectual Property Department in your country or send inquiries, in writing, to:</p>
+        <p>Intellectual Property Licensing</p>
+        <p>Legal and Intellectual Property </p>
+        <p>Law IBM Japan, Ltd.</p>
+        <p>19-21, Nihonbashi-Hakozakicho, Chuo-ku</p>
+        <p>Tokyo 103-8510, Japan</p>
+        <p><b>The following paragraph does not apply to the United Kingdom or any other country where such provisions are inconsistent with local law:
+</b></p>
+        <p>INTERNATIONAL BUSINESS MACHINES CORPORATION PROVIDES THIS PUBLICATION "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+        <p>Some states do not allow disclaimer of express or implied warranties in certain transactions, therefore, this statement might not apply to you.</p>
+        <p>This information could include technical inaccuracies or typographical errors. Changes are periodically made to the information herein; these changes will be incorporated in new editions of the publication. IBM may make improvements and/or changes in the product(s) and/or the program(s) described in this publication at any time without notice.</p>
+        <p>
+Any references in this information to non-IBM Web sites are provided for convenience only and do not in any manner serve as an endorsement of those Websites. The materials at those Web sites are not part of the materials for this IBM product and use of those Web sites is at your own risk.</p>
+        <p>
+IBM may use or distribute any of the information you supply in any way it believes appropriate without incurring any obligation to you.
+</p>
+        <p>Licensees of this program who wish to have information about it for the purpose of enabling: (i) the exchange of information between independently created programs and other programs (including this one) and (ii) the mutual use of the information which has been exchanged, should contact:
+</p>
+        <p>IBM Corporation </p>
+        <p>2Z4A/101</p>
+        <p>11400 Burnet Road</p>
+        <p>Austin, TX 78758 </p>
+        <p>U.S.A.</p>
+        <p>Such information may be available, subject to appropriate terms and conditions, including in some cases payment of a fee.
+</p>
+        <p>The licensed program described in this document and all licensed material available for it are provided by IBM under terms of the IBM Customer Agreement, IBM International Program License Agreement or any equivalent agreement between us.
+</p>
+        <p>Information concerning non-IBM products was obtained from the suppliers of those products, their published announcements or other publicly available sources. IBM has not tested those products and cannot confirm the accuracy of performance, compatibility or any other claims related to non-IBM products.
+Questions on the capabilities of non-IBM products should be addressed to the suppliers of those products.</p>
+        <h2>Programming Interfaces</h2>
+        <p>his publication primarily documents information that is NOT intended to be used as Programming Interfaces of Tivoli NetView for z/OS. This publication also documents intended Programming Interfaces that allow the customer to write programs to obtain the services of Tivoli NetView for z/OS. This information is identified where it occurs, either by an introductory statement to a chapter or section or by the following marking:
+Programming Interface information
+End of Programming Interface information</p>
+        <h2>Trademarks</h2>
+        <p>IBM, the IBM logo, and ibm.com® are trademarks or registered trademarks of International Business Machines Corp., registered in many jurisdictions worldwide. Other product and service names might be trademarks of IBM or other companies. A current list of IBM trademarks is available on the Web at “Copyright and trademark information” at http://www.ibm.com/legal/copytrade.shtml .</p>
+        <P>Adobe is a trademark of Adobe Systems Incorporated in the United States, and/or other countries.
+</P>
+        <p>Java and all Java-based trademarks and logos are trademarks or registered trademarks of Oracle and/or its affiliates.
+</p>
+        <p>Linux is a registered trademark of Linus Torvalds in the United States, other countries, or both.</p>
+        <p>Microsoft and Windows are trademarks of Microsoft Corporation in the United States, other countries, or both.</p>
+        <p>UNIX is a registered trademark of The Open Group in the United States and other countries.</p>
+        <p>Other product and service names might be trademarks of IBM or other companies.</p>
+        <h2>Privacy policy considerations</h2>
+        <p>IBM Software products, including software as a service solutions, (“Software Offerings”) may use cookies or other technologies to collect product usage information, to help improve the end user experience, to tailor interactions with the end user or for other purposes. In many cases no personally identifiable information is collected by the Software Offerings. Some of our Software Offerings can help enable you to collect personally identifiable information. If this Software Offering uses cookies to collect personally identifiable information, specific information about this offering’s use of cookies is set forth below.</p>
+        <p>This Software Offering does not use cookies or other technologies to collect personally identifiable information.
+</p>
+        <p>If the configurations deployed for this Software Offering provide you as customer the ability to collect personally identifiable information from end users via cookies and other technologies, you should seek your own legal advice about any laws applicable to such data collection, including any requirements for notice and consent.</p>
+        <p>For more information about the use of various technologies, including cookies, for these purposes, See IBM’s Privacy Policy at http://www.ibm.com/privacy and IBM’s Online Privacy Statement at http://www.ibm.com/privacy/details the section entitled “Cookies, Web Beacons and Other Technologies” and the “IBM Software Products and Software-as-a-Service Privacy Statement” at http://www.ibm.com/software/info/product-privacy.</p>
+        </div>
+    </body>
+</html>
